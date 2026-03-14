@@ -12,6 +12,18 @@
             <a href="{{ url('/cart') }}" class="mt-2 sm:mt-0 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center">
                 Cart ({{ count(session()->get('cart', [])) }})
             </a>
+            @auth
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="ml-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                    Logout
+                </button>
+            </form>
+            @endauth
+
+            @guest
+            <a href="{{ url('/login') }}" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Login</a>
+            @endguest
         </nav>
     </div>
 </header>
